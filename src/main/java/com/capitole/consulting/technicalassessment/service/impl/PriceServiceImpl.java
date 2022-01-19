@@ -2,10 +2,12 @@ package com.capitole.consulting.technicalassessment.service.impl;
 
 import com.capitole.consulting.technicalassessment.model.Price;
 import com.capitole.consulting.technicalassessment.service.IPriceService;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class PriceServiceImpl implements IPriceService {
 
     @Override
