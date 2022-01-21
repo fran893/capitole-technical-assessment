@@ -1,7 +1,9 @@
 package com.capitole.consulting.technicalassessment.controller;
 
 import com.capitole.consulting.technicalassessment.model.Price;
+import com.capitole.consulting.technicalassessment.model.PriceResult;
 import com.capitole.consulting.technicalassessment.service.IPriceService;
+import com.capitole.consulting.technicalassessment.utils.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,11 +27,12 @@ public class PriceController {
 
     @GetMapping("/getPrices")
     @ResponseBody
-    public List<Price> getPrices(@RequestParam("applyDate")
-                                     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime applyDate,
-                                 @RequestParam("productId") Integer productId,
-                                 @RequestParam("brandId") Integer brandId) {
-        return priceService.getPrices(applyDate, productId, brandId);
+    public List<PriceResult> getPrices(@RequestParam("applyDate")
+                                            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime applyDate,
+                                       @RequestParam("productId") Integer productId,
+                                       @RequestParam("brandId") Integer brandId) {
+        List<Price> prices = priceService.getPrices(applyDate, productId, brandId);
+        return Converter.convertPricesToPriceResult(prices);
     }
 
 }
