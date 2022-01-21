@@ -32,7 +32,7 @@ public class PriceController {
                                        @RequestParam("productId") Integer productId,
                                        @RequestParam("brandId") Integer brandId) {
         List<Price> prices = priceService.getPrices(applyDate, productId, brandId);
-        return Converter.convertPricesToResult(prices);
+        return Converter.convertPricesToPriceResult(prices);
     }
 
 }

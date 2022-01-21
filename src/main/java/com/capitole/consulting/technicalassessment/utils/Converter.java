@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Converter {
 
-    public static List<PriceResult> convertPricesToResult(List<Price> pricesList) {
+    public static List<PriceResult> convertPricesToPriceResult(List<Price> pricesList) {
         List<PriceResult> result = new ArrayList<>();
         pricesList.forEach(price -> {
             result.add(new PriceResult() {{
