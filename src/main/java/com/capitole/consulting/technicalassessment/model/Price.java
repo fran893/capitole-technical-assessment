@@ -1,24 +1,30 @@
 package com.capitole.consulting.technicalassessment.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity(name = "prices")
-@Table(name = "prices")
+@Table(name = "prices", schema = "flyway")
 public class Price implements Serializable {
 
     @Id
     @GeneratedValue
+    @Column(name = "priceid")
     private Integer priceId;
+    @Column(name = "brandid")
     private Integer brandId;
+    @Column(name = "startdate")
     private LocalDateTime startDate;
+    @Column(name = "enddate")
     private LocalDateTime endDate;
+    @Column(name = "pricelist")
     private Integer priceList;
+    @Column(name = "productid")
     private Integer productId;
     private Integer priority;
     private Double price;
