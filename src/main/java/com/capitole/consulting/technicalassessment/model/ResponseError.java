@@ -1,42 +1,34 @@
 package com.capitole.consulting.technicalassessment.model;
 
+import com.capitole.consulting.technicalassessment.model.builders.impl.ResponseErrorBuilder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.time.LocalDateTime;
 
+@JsonDeserialize(builder = ResponseErrorBuilder.class)
 public class ResponseError {
 
     private LocalDateTime timeStamp;
     private String errorMessage;
     private Integer responseCode;
 
-    public ResponseError(LocalDateTime timeStamp, String errorMessage, Integer responseCode) {
-        this.timeStamp = timeStamp;
-        this.errorMessage = errorMessage;
-        this.responseCode = responseCode;
-    }
+    private ResponseError() {}
 
-    public ResponseError() {}
+    public ResponseError(ResponseErrorBuilder builder) {
+        this.timeStamp = builder.getTimeStamp();
+        this.errorMessage = builder.getErrorMessage();
+        this.responseCode = builder.getResponseCode();
+    }
 
     public LocalDateTime getTimeStamp() {
         return timeStamp;
-    }
-
-    public void setTimeStamp(LocalDateTime timeStamp) {
-        this.timeStamp = timeStamp;
     }
 
     public String getErrorMessage() {
         return errorMessage;
     }
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
-
     public Integer getResponseCode() {
         return responseCode;
-    }
-
-    public void setResponseCode(Integer responseCode) {
-        this.responseCode = responseCode;
     }
 }

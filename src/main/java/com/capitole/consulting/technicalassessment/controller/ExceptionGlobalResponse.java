@@ -1,6 +1,7 @@
 package com.capitole.consulting.technicalassessment.controller;
 
 import com.capitole.consulting.technicalassessment.model.ResponseError;
+import com.capitole.consulting.technicalassessment.model.builders.impl.ResponseErrorBuilder;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,11 +36,11 @@ public class ExceptionGlobalResponse {
     }
 
     private ResponseError createResponseError(Exception ex, HttpStatus status) {
-        ResponseError responseError = new ResponseError();
-        responseError.setResponseCode(status.value());
-        responseError.setErrorMessage(ex.getMessage());
-        responseError.setTimeStamp(LocalDateTime.now());
-        return responseError;
+        return new ResponseErrorBuilder()
+                .withResponseCode(status.value())
+                .withErrorMessage(ex.getMessage())
+                .withTimeStamp(LocalDateTime.now())
+                .build();
     }
 
 }

@@ -1,10 +1,15 @@
 package com.capitole.consulting.technicalassessment.model;
 
+import com.capitole.consulting.technicalassessment.model.builders.impl.PriceResultBuilder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.time.LocalDateTime;
 
 /**
  * This class will be returned from the getPrices method
  */
+
+@JsonDeserialize(builder = PriceResultBuilder.class)
 public class PriceResult {
 
     private Integer productId;
@@ -14,51 +19,38 @@ public class PriceResult {
     private LocalDateTime endDate;
     private Integer priceList;
 
-    public Integer getProductId() {
-        return productId;
+    private PriceResult() {}
+
+    public PriceResult(PriceResultBuilder builder) {
+        this.productId = builder.getProductId();
+        this.brandId = builder.getBrandId();
+        this.price = builder.getPrice();
+        this.startDate = builder.getStartDate();
+        this.endDate = builder.getEndDate();
+        this.priceList = builder.getPriceList();
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public Integer getProductId() {
+        return productId;
     }
 
     public Integer getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(Integer brandId) {
-        this.brandId = brandId;
-    }
-
     public Double getPrice() {
         return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Integer getPriceList() {
-        return priceList;
-    }
-
-    public void setPriceList(Integer priceList) {
-        this.priceList = priceList;
     }
 
     public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
-    }
-
     public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
-        this.endDate = endDate;
+    public Integer getPriceList() {
+        return priceList;
     }
 }
