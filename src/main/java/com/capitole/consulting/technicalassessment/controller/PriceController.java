@@ -33,9 +33,9 @@ public class PriceController {
                                             @DateTimeFormat(pattern = "yyyy-MM-dd-HH.mm.ss") LocalDateTime applyDate,
                                                       @RequestParam("productId") Integer productId,
                                                       @RequestParam("brandId") Integer brandId) {
-        List<Price> prices = priceService.getPrices(applyDate, productId, brandId);
+        List<PriceResult> prices = priceService.getPrices(applyDate, productId, brandId);
         if (!prices.isEmpty()){
-            return new ResponseEntity<>(Converter.convertPricesToPriceResult(prices), HttpStatus.OK);
+            return new ResponseEntity<>(prices, HttpStatus.OK);
         } else {
             throw new ResourceNotFoundException();
         }
